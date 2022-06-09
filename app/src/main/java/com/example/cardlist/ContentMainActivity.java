@@ -51,7 +51,7 @@ public class ContentMainActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 //iv.setImageResource(R.drawable.test);
-                binding.imageView.setImageResource(R.drawable.k1);
+                binding.imageView.setImageResource(R.mipmap.ic_launcher);
             }
         });
         mqueue.add(imageRequest);

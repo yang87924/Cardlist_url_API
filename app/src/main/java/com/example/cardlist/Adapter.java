@@ -45,7 +45,12 @@ public class Adapter extends  RecyclerView.Adapter<Adapter.ViewHolder>  {
         holder.title.setText(data.get(position).getTitle());
         //holder.content.setText(data.get(position).getContent());
         //holder.msgTime.setText(data.get(position).getMsgTime());
-        Picasso.get().load(data.get(position).getImgURL()).into(holder.imgURL);
+        //Picasso.get().load(data.get(position).getImgURL()).into(holder.imgURL);
+        Picasso .get()
+                .load(data.get(position).getImgURL())
+                .placeholder(R.mipmap.ic_launcher)              //新增佔位圖片
+                .error(R.mipmap.ic_launcher)                          //載入失敗顯示的圖片
+                .into(holder.imgURL);
 
         /*Picasso = new Picasso.Builder(context.getApplicationContext())
                 .listener(new Picasso.Listener() {
