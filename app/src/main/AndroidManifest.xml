@@ -13,6 +13,7 @@
         android:theme="@style/Theme.Cardlist">
         <activity
             android:name=".ContentMainActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
