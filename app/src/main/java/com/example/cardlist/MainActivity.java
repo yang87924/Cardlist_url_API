@@ -52,11 +52,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void animate(){
+
+    }
     private void setAdapter() {
         setOnclickListiner();
         binding.revycleview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         adapter = new Adapter(getApplicationContext(),datas,listener);
-        binding.revycleview.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(this,R.anim.layout_animation));
+       // binding.revycleview.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(this,R.anim.layout_animation));
         binding.revycleview.setAdapter(adapter);
     }
 
