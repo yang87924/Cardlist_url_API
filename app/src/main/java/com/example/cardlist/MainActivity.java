@@ -30,11 +30,8 @@ public class MainActivity extends AppCompatActivity {
     List<data>datas;
     List<data>dataContent;
     Adapter adapter;
-
     private Adapter.RecycleViewClickListener listener;
     private static String url = "https://smuat.megatime.com.tw/EAS/Apps/systex/hr_elearning/hr_elearning_20220602_181350.json";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,26 +41,17 @@ public class MainActivity extends AppCompatActivity {
         datas = new ArrayList<>();
         dataContent = new ArrayList<>();
         extractSongs();
-
-
-
-
-
-
-    }
-
-    private void animate(){
-
     }
     private void setAdapter() {
         setOnclickListiner();
         binding.revycleview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         adapter = new Adapter(getApplicationContext(),datas,listener);
-       // binding.revycleview.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(this,R.anim.layout_animation));
+        //設定進場動畫
+        binding.revycleview.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(this,R.anim.layout_animation));
         binding.revycleview.setAdapter(adapter);
     }
 
-    private void setOnclickListiner() {
+    private void setOnclickListiner() {//清單點擊事件 傳遞到內容頁面
         listener=new Adapter.RecycleViewClickListener() {
             @Override
             public void onClick(View v, int position) {
@@ -101,15 +89,11 @@ public class MainActivity extends AppCompatActivity {
                                 data2.setMsgTime(dataObject.getString("msgTime").toString());
                                 data2.setImgURL(dataObject.getString("img"));
                                 dataContent.add(data2);
-
-
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                         setAdapter();
-
                     }
 
                 }, new Response.ErrorListener() {
@@ -121,38 +105,3 @@ public class MainActivity extends AppCompatActivity {
         mqueue.add(request);
     }
 }
-
-    /*private class MyAdApter extends BaseAdapter{
-        private LayoutInflater myInflater;
-        public MyAdApter(Context c) {
-            myInflater=LayoutInflater.from(c);
-        }
-
-        @Override
-        public int getCount() {
-            return imageIds.length;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            view =myInflater.inflate(R.layout.layout,null);
-            //ImageView imageView=view.findViewById(R.id.imageView);
-            TextView textViewTitle=view.findViewById(R.id.textViewTitle);
-            TextView textViewContent=view.findViewById(R.id.textViewContent);
-            //imageView.setImageResource(imageIds[i]);
-            textViewTitle.setText(title[i]);
-            textViewContent.setText(content[i]);
-            return  view;
-
-        }
-    }*/

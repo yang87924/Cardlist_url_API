@@ -20,27 +20,19 @@ public class ContentMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_content_main);
         binding = ActivityContentMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Bundle extras= getIntent().getExtras();
-
-
-        if(extras!=null){
-            //Log.d("qwe",extras.getString("content"));
-            //Log.d("qwe",extras.getString("content"));
-            //Log.d("qwe",extras.getString("msgTime"));
-
+        if(extras!=null){//判斷傳遞的資料是否為空
             url=extras.getString("img");
             binding.textViewTitle.setText(extras.getString("title"));
             binding.textViewContent.setText(extras.getString("content"));
             binding.textViewMsgTime.setText(extras.getString("msgTime"));
             Log.d("asd",url);
-
             image();
         }
     }
-    private void image(){
+    private void image(){//判斷圖片是否讀取成功
         RequestQueue mqueue = Volley.newRequestQueue(this);
         ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
             @Override
@@ -50,7 +42,6 @@ public class ContentMainActivity extends AppCompatActivity {
         }, 0, 0, Bitmap.Config.RGB_565, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                //iv.setImageResource(R.drawable.test);
                 binding.imageView.setImageResource(R.mipmap.ic_launcher);
             }
         });

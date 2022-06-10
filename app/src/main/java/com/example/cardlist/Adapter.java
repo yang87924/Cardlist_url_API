@@ -34,14 +34,12 @@ public class Adapter extends  RecyclerView.Adapter<Adapter.ViewHolder>  {
         this.listener=listener;
         this.context=context;
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view =inflater.inflate(R.layout.layout,parent,false);
         return new ViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(data.get(position).getTitle());
@@ -54,15 +52,7 @@ public class Adapter extends  RecyclerView.Adapter<Adapter.ViewHolder>  {
                 .error(R.mipmap.ic_launcher)                          //載入失敗顯示的圖片
                 .into(holder.imgURL);
         Animation animation= AnimationUtils.loadAnimation(holder.title.getContext(),R.anim.myanim);
-        holder.itemView.startAnimation(animation);
-
-        /*Picasso = new Picasso.Builder(context.getApplicationContext())
-                .listener(new Picasso.Listener() {
-                    @Override
-                    public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception) {
-                        Log.e(TAG, uri.toString(), exception);
-                    }
-                }).build();*/
+        holder.itemView.startAnimation(animation);//捲動動畫
     }
 
     @Override
