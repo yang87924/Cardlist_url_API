@@ -1,6 +1,7 @@
 package com.example.cardlist;
 
-public class data {
+public class data
+{
     private String title;
     private String content;
     private String msgTime;

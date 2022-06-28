@@ -1,6 +1,7 @@
 package com.example.cardlist;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.os.BuildCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
@@ -26,12 +27,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    static{
+        System.loadLibrary("keys");
+    }
+    private native String getApi();
     private ActivityMainBinding binding;
     List<data>datas;
     List<data>dataContent;
     Adapter adapter;
     private Adapter.RecycleViewClickListener listener;
-    private static String url = "https://smuat.megatime.com.tw/EAS/Apps/systex/hr_elearning/hr_elearning_20220602_181350.json";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         datas = new ArrayList<>();
         dataContent = new ArrayList<>();
         extractSongs();
+
+
     }
     private void setAdapter() {
         setOnclickListiner();
@@ -68,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void extractSongs() {
         RequestQueue mqueue = Volley.newRequestQueue(this);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, getApi(), null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
